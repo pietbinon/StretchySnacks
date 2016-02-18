@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var tableView: UITableView!
     
     var stackView : UIStackView = UIStackView()
+    var snacksLabel : UILabel = UILabel()
+    var labelHeight : NSLayoutConstraint!
     var snacksArray = [String]()
     
     override func viewDidLoad() {
@@ -32,6 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        oreosView.image = UIImage(named: "oreos")
 //        oreoButton.addSubview(oreosView)
 
+        // Buttons
         let oreoButton : UIButton = UIButton()
         oreoButton.heightAnchor.constraintEqualToConstant(120.0).active = true
         oreoButton.widthAnchor.constraintEqualToConstant(self.view.frame.size.width/5.0).active = true
@@ -67,25 +70,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         ramenButton.addTarget(self, action: "addSnack:", forControlEvents: .TouchUpInside)
         ramenButton.setImage(UIImage(named: "ramen"), forState: .Normal)
         
-        //Stack View
+        // Stack View
         stackView.axis = UILayoutConstraintAxis.Horizontal
         stackView.distribution = UIStackViewDistribution.EqualSpacing
         stackView.alignment = UIStackViewAlignment.Center
         stackView.hidden = true
-        //        stackView.spacing = 1.0
-        
+        stackView.translatesAutoresizingMaskIntoConstraints = false;
+        stackView.spacing = 0.0
+
         stackView.addArrangedSubview(oreoButton)
         stackView.addArrangedSubview(pizzaPocketsButton)
         stackView.addArrangedSubview(popTartsButton)
         stackView.addArrangedSubview(popsicleButton)
         stackView.addArrangedSubview(ramenButton)
-        stackView.translatesAutoresizingMaskIntoConstraints = false;
-        
         navBarView.addSubview(stackView)
         
+        // Text Label
+        snacksLabel.text = "SNACKS"
+        snacksLabel.textAlignment = .Center
+//        textLabel.frame.size.height = 20.0
+//        textLabel.frame.size.width = navBarView.frame.size.width
+//        textLabel.center.x = navBarView.center.x
+        snacksLabel.translatesAutoresizingMaskIntoConstraints = false;
+        navBarView.addSubview(snacksLabel)
+
         //Constraints
-        stackView.centerXAnchor.constraintEqualToAnchor(self.navBarView.centerXAnchor).active = true
-        stackView.bottomAnchor.constraintEqualToAnchor(self.navBarView.bottomAnchor).active = true
+        stackView.centerXAnchor.constraintEqualToAnchor(navBarView.centerXAnchor).active = true
+        stackView.bottomAnchor.constraintEqualToAnchor(navBarView.bottomAnchor).active = true
+        snacksLabel.centerXAnchor.constraintEqualToAnchor(navBarView.centerXAnchor).active = true
+        labelHeight = snacksLabel.centerYAnchor.constraintEqualToAnchor(navBarView.centerYAnchor, constant: 0.0)
+        labelHeight.active = true
     }
     
     func addSnack(sender: UIButton) {
@@ -134,11 +148,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func navBarAnimation() {
         if self.navBarHeightConstraint.constant == 64 {
             self.navBarHeightConstraint.constant = 200
+            labelHeight.constant = -40.0
             stackView.hidden = false
-            
-            //            UIView.animateWithDuration(0.5) {
-            //                self.view.layoutIfNeeded()
-            //            }
             
             UIView.animateWithDuration(1.0,
                 delay: 0.0,
@@ -153,6 +164,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         else {
             self.navBarHeightConstraint.constant = 64
+            labelHeight.constant = 0.0
             stackView.hidden = true
             UIView.animateWithDuration(1.0,
                 delay: 0.0,
@@ -180,3 +192,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
+//            UIView.animateWithDuration(0.5) {
+//                self.view.layoutIfNeeded()
+//            }
