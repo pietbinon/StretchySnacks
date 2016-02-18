@@ -40,18 +40,50 @@
                                     <constraint firstAttribute="trailing" secondItem="GKl-DT-mwn" secondAttribute="trailing" constant="8" id="fma-td-9uQ"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0JT-Uc-Xm4">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="PYp-QI-BRh" style="IBUITableViewCellStyleDefault" id="gkA-UF-VJw">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gkA-UF-VJw" id="a3Z-BC-lw9">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PYp-QI-BRh">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="VYg-kf-2I0"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="KgC-Cs-7m8"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0JT-Uc-Xm4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3k0-zf-JXT"/>
                             <constraint firstItem="mM3-7R-6sH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Nsw-Ck-302"/>
                             <constraint firstAttribute="trailing" secondItem="mM3-7R-6sH" secondAttribute="trailing" id="T3c-Jt-qYo"/>
+                            <constraint firstItem="0JT-Uc-Xm4" firstAttribute="top" secondItem="mM3-7R-6sH" secondAttribute="bottom" id="c5n-SI-WmI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0JT-Uc-Xm4" secondAttribute="bottom" id="eBU-5q-sdV"/>
                             <constraint firstItem="mM3-7R-6sH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tPJ-md-cTk"/>
+                            <constraint firstAttribute="trailing" secondItem="0JT-Uc-Xm4" secondAttribute="trailing" id="tsw-lF-bA4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="navBarHeightConstraint" destination="70L-Cf-C7X" id="hSF-rc-bKe"/>
                         <outlet property="navBarView" destination="mM3-7R-6sH" id="huU-XX-e7y"/>
                         <outlet property="plusButton" destination="GKl-DT-mwn" id="t4r-yo-7VR"/>
+                        <outlet property="tableView" destination="0JT-Uc-Xm4" id="fQU-ar-Yo4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
